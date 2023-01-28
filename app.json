@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "quiztopia",
+    "slug": "quiztopia",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "quiztopia"
+}
