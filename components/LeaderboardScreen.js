@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5'
     },
     titleText: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 16
     },
@@ -53,7 +53,7 @@ const LeaderboardScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.scoresContainer}>
-        <Text style={styles.titleText}>Leaderboard</Text>
+        <Text style={styles.titleText}>  Leaderboard</Text>
         <FlatList
             data={leaderboardData}
             renderItem={renderItem}

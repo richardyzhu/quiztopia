@@ -27,17 +27,17 @@ class Question extends React.Component  {
           // correct answer
           setTimeout(() => {
               this.updateQuestion();
-          }, 1500);
+          }, 1000);
       }
       else{
           // incorrect answer
           setTimeout(() => {
               this.updateQuestion();
-          }, 1500);
+          }, 1000);
       }
       setTimeout(() => {
           this.setState({ selectedAnswer: ''});
-      }, 1500);    
+      }, 1000);    
       
   }
 
@@ -184,7 +184,7 @@ const response_json = await fetchQuestion(token);
       height: 60,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#9ACD32',
+      backgroundColor: '#7b8d9d',
       borderRadius: 5,
       marginHorizontal: 5,
       marginVertical: 10,

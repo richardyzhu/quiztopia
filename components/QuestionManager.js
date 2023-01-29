@@ -22,8 +22,7 @@ class QuestionManager extends React.Component {
                     answers={this.state.answers}
                     correctAnswer={this.state.correctAnswer}
                 />
-                <Image source={require('../images/lightbulb.png')}
-                        style={styles.bulbImage}/>
+                
             </View>
         )
     }
@@ -35,13 +34,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         width: '90%'
     },
-    bulbImage: {
-      height: 200,
-      width: 200,
-      position: 'absolute',
-      zIndex: '-10',
-      top: '100%',
-    }
 });
 
 export default QuestionManager;
