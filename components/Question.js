@@ -1,7 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import QuestionManager from './QuestionManager'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -53,27 +51,40 @@ class Question extends React.Component  {
         answers: this.props.answers,
         correctAnswer: this.props.correctAnswer,
         selectedAnswer: '',
-        updateQuestion: this.props.updateQuestion,
       }
+      this.updateQuestion = this.updateQuestion.bind(this);
     }
 
     onPress = (answer) => {
       this.setState({ selectedAnswer: answer });
       if(answer === this.state.correctAnswer){
           // correct answer
-          let that = this;
           setTimeout(() => {
-              that.props.updateQuestion();
+              this.updateQuestion();
           }, 2000);
       }
       else{
           // incorrect answer
-          let that = this;
           setTimeout(() => {
-              this.props.updateQuestion();
+              this.updateQuestion();
           }, 2000);
       }
+      setTimeout(() => {
+          this.setState({ selectedAnswer: ''});
+      }, 2000);    
+      
   }
+
+  updateQuestion = () => {
+    // code to generate new question and answers
+    console.log("updating question");
+    const randomNumber = Math.floor(Math.random() * 10);
+    this.setState({ 
+        questionText: 'This is a new question!',
+        answers: [randomNumber, 'Answer 2', 'Answer 3', 'Answer 4'],
+        correctAnswer: 'Answer 3'
+}
+)}
     
     getButtonStyle = (answer) => {
         if (answer === this.state.correctAnswer) {
