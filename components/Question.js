@@ -1,7 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {decode} from 'html-entities';
 
-
+decode('&lt; &gt; &quot; &apos; &amp; &#169; &#8710;');
+// -> '< > " \' & © ∆'
+decode('&copy;', {level: 'html5'});
+// -> '©'
+decode('&copy;', {level: 'xml'});
+// -> '&copy;'
 
 class Question extends React.Component  {
     constructor(props) {
@@ -21,17 +27,17 @@ class Question extends React.Component  {
           // correct answer
           setTimeout(() => {
               this.updateQuestion();
-          }, 2000);
+          }, 1500);
       }
       else{
           // incorrect answer
           setTimeout(() => {
               this.updateQuestion();
-          }, 2000);
+          }, 1500);
       }
       setTimeout(() => {
           this.setState({ selectedAnswer: ''});
-      }, 2000);    
+      }, 1500);    
       
   }
 
@@ -58,6 +64,7 @@ async function getTrivia(url) {
     const json = response.data;
     return json;
 }
+
 
 async function fetchQuestion(token) {
     // console.log("TOKEN: " + token);
@@ -97,11 +104,13 @@ function shuffle(array) {
 
   return array;
 }
+
+    
 const response_json = await fetchQuestion(token);
   let difficulty = response_json.difficulty;
-  let givenQuestion = response_json.question;
+  let givenQuestion = decode(response_json.question);
   let newArray = shuffle([].concat(response_json.incorrect_answers, response_json.correct_answer));
-  let correctAnswer = response_json.correct_answer;
+  let correctAnswer = decode(response_json.correct_answer);
     this.setState({ 
         questionText: givenQuestion,
         answers: newArray,
@@ -154,16 +163,18 @@ const response_json = await fetchQuestion(token);
     },
     questionText: {
       textAlign: 'center',
-      fontSize: 30,
+      fontSize: 28,
       fontWeight: 'bold',
-      marginBottom: '5%'
+      marginBottom: '5%',
+      marginLeft: '10%',
+      marginRight: '10%'
     },
     answerButtonContainer: {
       alignItems: 'center',
       width: '100%',
       height: '20%',
       padding: 10,
-      marginTop: '15%',
+      marginTop: '10%',
     },
     answerButton: {
       width: '90%',
