@@ -1,14 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
-import Question from './components/Question';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import LeaderboardScreen from './components/LeaderboardScreen';
 import LoginScreen from './components/LoginScreen';
+import QuestionManager from './components/QuestionManager';
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -21,13 +23,14 @@ const styles = StyleSheet.create({
     marginLeft: '15%',
     marginRight: '15%',
     marginBottom: '15%',
+    zIndex: '10',
   },
   button: {
     width: '30%',
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#9ACD32',
+    backgroundColor: '#7b8d9d',
     borderRadius: 5,
     marginHorizontal: 5,
   },
@@ -54,11 +57,17 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#9ACD32',
+    backgroundColor: '#7b8d9d',
     borderRadius: 5,
     marginHorizontal: 5,
     marginVertical: 10,
   },
+  bulbImage: {
+    height: 1000,
+    width: 1000,
+    position: 'absolute',
+    zIndex: '-10',
+  }
 });
 
 
@@ -79,13 +88,14 @@ const App = () => {
         </TouchableOpacity>
       </View>
       {currentScreen === 'question' && 
-        <Question questionText='Why did Richard go to class?'
-                  answers={['Go to class', 'Eat lunches', 'Take a dump', 'None of the above']}
-                  correctAnswer='Go to class'/>}
+        <QuestionManager />}
       {currentScreen === 'leaderboard' && <LeaderboardScreen />}
       {currentScreen === 'login' && <LoginScreen />}
+      <Image source={require('./images/71.jpg')}
+                        style={styles.bulbImage}/>
     </View>
   );
 }
 
 export default App;
+
