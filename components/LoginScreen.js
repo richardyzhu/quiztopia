@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { Client, Account, Id } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 
 const LoginScreen = () => {
   const [username, setUsername] = useState('');
@@ -14,9 +14,16 @@ const LoginScreen = () => {
     
     const account = new Account(client);
 
-    account.createOAuth2Session('discord',
-    'https://discord.com/api/oauth2/authorize?client_id=1069168038080954368&redirect_uri=https%3A%2F%2Fcloud.appwrite.io%2Fv1%2Faccount%2Fsessions%2Foauth2%2Fcallback%2Fdiscord%2F63d5326b15e8272efde2&response_type=code&scope=identify',
-    );
+    account.create(
+      ID.unique(),
+      username,
+      password,
+    ).then(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    });
+
 
     console.log(`Username: ${username}, Password: ${password}`);
   };
