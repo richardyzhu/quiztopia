@@ -5,7 +5,6 @@ import Question from './components/Question';
 import LeaderboardScreen from './components/LeaderboardScreen';
 import LoginScreen from './components/LoginScreen';
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 
+
 const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
