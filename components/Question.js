@@ -2,49 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-    },
-
-    buttonText: {
-      color: 'white',
-      fontWeight: 'bold',
-      fontSize: 16,
-    },
-    questionText: {
-      textAlign: 'center',
-      fontSize: 30,
-      fontWeight: 'bold',
-      marginBottom: '5%'
-    },
-    answerButtonContainer: {
-      alignItems: 'center',
-      width: '100%',
-      height: '20%',
-      padding: 10,
-      marginTop: '15%',
-    },
-    answerButton: {
-      width: '90%',
-      height: 60,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#9ACD32',
-      borderRadius: 5,
-      marginHorizontal: 5,
-      marginVertical: 10,
-    },
-    correctButton: {
-      backgroundColor: 'green',
-    },
-    incorrectButton: {
-      backgroundColor: 'red',
-    },
-  });
 
 class Question extends React.Component {
+  
     constructor(props) {
         super(props);
         this.state = {
@@ -103,5 +63,48 @@ class Question extends React.Component {
         )
     }
   }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+    },
+
+    buttonText: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 16,
+    },
+    questionText: {
+      textAlign: 'center',
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginBottom: '5%'
+    },
+    answerButtonContainer: {
+      alignItems: 'center',
+      width: '100%',
+      height: '20%',
+      padding: 10,
+      marginTop: '15%',
+    },
+    answerButton: {
+      width: '90%',
+      height: 60,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#9ACD32',
+      borderRadius: 5,
+      marginHorizontal: 5,
+      marginVertical: 10,
+    },
+    correctButton: {
+      backgroundColor: 'green',
+    },
+    incorrectButton: {
+      backgroundColor: 'red',
+    },
+  });
+
   
   export default Question;

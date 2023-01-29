@@ -5,6 +5,38 @@ import Question from './components/Question';
 import LeaderboardScreen from './components/LeaderboardScreen';
 import LoginScreen from './components/LoginScreen';
 
+
+DATABASE_ID = '63d55c9825fa4c6999df';
+COLLECTION_ID = '63d56bdd20045447a7ee';
+
+
+
+const App = () => {
+  const [currentScreen, setCurrentScreen] = useState('question');
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => setCurrentScreen('leaderboard')} style={styles.button}>
+          <Text style={styles.buttonText}>Leaderboard</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setCurrentScreen('question')} style={styles.button}>
+          <Text style={styles.buttonText}>Play</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setCurrentScreen('login')} style={styles.button}>
+          <Text style={styles.buttonText}>Log In</Text>
+        </TouchableOpacity>
+      </View>
+      {currentScreen === 'question' && 
+        <Question questionText='Why did Richard go to class?'
+                  answers={['Go to class', 'bob', 'Take a dump', 'None of the above']}
+                  correctAnswer='bob'/>}
+      {currentScreen === 'leaderboard' && <LeaderboardScreen />}
+      {currentScreen === 'login' && <LoginScreen />}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -61,31 +93,5 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const App = () => {
-  const [currentScreen, setCurrentScreen] = useState('question');
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => setCurrentScreen('leaderboard')} style={styles.button}>
-          <Text style={styles.buttonText}>Leaderboard</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setCurrentScreen('question')} style={styles.button}>
-          <Text style={styles.buttonText}>Play</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setCurrentScreen('login')} style={styles.button}>
-          <Text style={styles.buttonText}>Log In</Text>
-        </TouchableOpacity>
-      </View>
-      {currentScreen === 'question' && 
-        <Question questionText='Why did Richard go to class?'
-                  answers={['Go to class', 'Eat lunches', 'Take a dump', 'None of the above']}
-                  correctAnswer='Go to class'/>}
-      {currentScreen === 'leaderboard' && <LeaderboardScreen />}
-      {currentScreen === 'login' && <LoginScreen />}
-    </View>
-  );
-}
 
 export default App;
