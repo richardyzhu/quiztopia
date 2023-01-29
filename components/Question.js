@@ -110,6 +110,9 @@ const response_json = await fetchQuestion(token);
   let difficulty = response_json.difficulty;
   let givenQuestion = decode(response_json.question);
   let newArray = shuffle([].concat(response_json.incorrect_answers, response_json.correct_answer));
+  for (let i = 0; i < newArray.length; i++) {
+    newArray[i] = decode(newArray[i]);
+  }
   let correctAnswer = decode(response_json.correct_answer);
     this.setState({ 
         questionText: givenQuestion,
