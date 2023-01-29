@@ -1,70 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import QuestionManager from './QuestionManager'
 
-
-class Question extends React.Component {
-  
-    constructor(props) {
-        super(props);
-        this.state = {
-          questionText: this.props.questionText,
-          answers: this.props.answers,
-          correctAnswer: this.props.correctAnswer,
-          selectedAnswer: '',
-        }
-    }
-
-    onPress = (answer) => {
-        this.setState({ selectedAnswer: answer });
-        if(answer === this.state.correctAnswer){
-            // correct answer
-            setTimeout(() => {
-                
-            }, 2000);
-        }
-        else{
-            // incorrect answer
-            setTimeout(() => {
- 
-            }, 2000);
-        }
-    }
-    
-    getButtonStyle = (answer) => {
-        if (answer === this.state.correctAnswer) {
-            if (this.state.selectedAnswer === this.state.correctAnswer) {
-                return [styles.answerButton, styles.correctButton];
-            } else if (this.state.selectedAnswer === '') {
-                return styles.answerButton;
-            } else {
-                return [styles.answerButton, styles.correctButton];
-            }
-        } else if (answer === this.state.selectedAnswer) {
-            return [styles.answerButton, styles.incorrectButton];
-        } else {
-            return styles.answerButton;
-        }
-    }
-    
-    render() {
-        return (
-            <><Text style={styles.questionText}>{this.state.questionText}</Text><View style={styles.answerButtonContainer}>
-                {this.state.answers.map((answer, index) => (
-                    <TouchableOpacity
-                        key={index}
-                        style={this.getButtonStyle(answer)}
-                        onPress={() => this.onPress(answer)}
-                    >
-                        <Text style={styles.buttonText}>{answer}</Text>
-                    </TouchableOpacity>
-                ))}
-            </View></>
-        )
-    }
-  }
-
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
@@ -106,5 +45,67 @@ class Question extends React.Component {
     },
   });
 
+class Question extends React.Component  {
+    constructor(props) {
+      super(props);
+      this.state = {
+        questionText: this.props.questionText,
+        answers: this.props.answers,
+        correctAnswer: this.props.correctAnswer,
+        selectedAnswer: '',
+        updateQuestion: this.props.updateQuestion,
+      }
+    }
+
+    onPress = (answer) => {
+      this.setState({ selectedAnswer: answer });
+      if(answer === this.state.correctAnswer){
+          // correct answer
+          let that = this;
+          setTimeout(() => {
+              that.props.updateQuestion();
+          }, 2000);
+      }
+      else{
+          // incorrect answer
+          let that = this;
+          setTimeout(() => {
+              this.props.updateQuestion();
+          }, 2000);
+      }
+  }
+    
+    getButtonStyle = (answer) => {
+        if (answer === this.state.correctAnswer) {
+            if (this.state.selectedAnswer === this.state.correctAnswer) {
+                return [styles.answerButton, styles.correctButton];
+            } else if (this.state.selectedAnswer === '') {
+                return styles.answerButton;
+            } else {
+                return [styles.answerButton, styles.correctButton];
+            }
+        } else if (answer === this.state.selectedAnswer) {
+            return [styles.answerButton, styles.incorrectButton];
+        } else {
+            return styles.answerButton;
+        }
+    }
+    
+    render() {
+        return (
+            <><Text style={styles.questionText}>{this.state.questionText}</Text><View style={styles.answerButtonContainer}>
+                {this.state.answers.map((answer, index) => (
+                    <TouchableOpacity
+                        key={index}
+                        style={this.getButtonStyle(answer)}
+                        onPress={() => this.onPress(answer)}>
+                        <Text style={styles.buttonText}>{answer}</Text>
+                    </TouchableOpacity>
+                ))}
+            </View></>
+        )
+    }
+  }
+  
   
   export default Question;
