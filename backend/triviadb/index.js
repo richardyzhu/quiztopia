@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const axios = require("axios");
+require("dotenv").config();
 
 mongoose.set("strictQuery", false);
 
-const uri =
-    "mongodb+srv://BackendBarry:barry123@triviaquestions.wvy7p.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
